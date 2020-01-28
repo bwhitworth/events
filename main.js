@@ -121,8 +121,6 @@ const pieBuilder = (arr) => {
   printToDom('pie-list', domString);
 };
 
-pieBuilder(pies);
-
 const findMyPies = (e) => {
   const buttonId = e.target.id
   if (buttonId === 'All') {
@@ -138,8 +136,17 @@ const findMyPies = (e) => {
 }
 };
 
-document.getElementById('Zoe').addEventListener('click', findMyPies);
-document.getElementById('Mary').addEventListener('click', findMyPies);
-document.getElementById('Luke').addEventListener('click', findMyPies);
-document.getElementById('Beth').addEventListener('click', findMyPies);
-document.getElementById('All').addEventListener('click', findMyPies);
+const events = () => {
+  document.getElementById('Zoe').addEventListener('click', findMyPies);
+  document.getElementById('Mary').addEventListener('click', findMyPies);
+  document.getElementById('Luke').addEventListener('click', findMyPies);
+  document.getElementById('Beth').addEventListener('click', findMyPies);
+  document.getElementById('All').addEventListener('click', findMyPies);
+};
+
+const init = () => {
+  pieBuilder(pies);
+  events();
+};
+
+init ();
