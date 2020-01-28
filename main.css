@@ -2,6 +2,11 @@ body {
   background-color: lightsteelblue;
 }
 
+.buttons {
+  font-size: 20pt;
+  padding: 20px;
+}
+
 
 #pie-list {
   display: flex;
@@ -16,8 +21,6 @@ body {
   background-color: antiquewhite;
   display: flex;
   flex-direction: column;
-
-
 }
 
 .name {
