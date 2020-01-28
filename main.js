@@ -81,7 +81,7 @@ pies = [
     isAvailable: true,
     imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FoI8YZ2p0zaI%2Fhqdefault.jpg&f=1&nofb=1",
     drinkPairing: "milk",
-    instructor: "Bethany"
+    instructor: "Beth"
   },
   {
     name: "Pecan",
@@ -93,7 +93,7 @@ pies = [
     isAvailable: false,
     imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flilluna.com%2Fwp-content%2Fuploads%2F2018%2F07%2Fpecan-pie-final-resize-4-300x300.jpg&f=1&nofb=1",
     drinkPairing: "PBR",
-    instructor: "Bethany"
+    instructor: "Beth"
   },
 ];
 
@@ -103,29 +103,50 @@ const printToDom = (divId, textToPrint) => {
   document.getElementById(divId).innerHTML = textToPrint;
 };
 
-const pieBuilder = () => {
+const pieBuilder = (arr) => {
   let domString = '';
-  for (let i = 0; i < pies.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     domString += `<div class="pieCard">`;
-    domString +=    `<div class="name">${pies[i].name}</div>`;
-    domString +=    `<div class="img"><img src=${pies[i].imageUrl} alt="Pie Photo"></div>`
-    domString +=    `<div class="inner"><p>Price: ${pies[i].price}</p>`;
-    domString +=    `<p>Warm: ${pies[i].isWarm}</p>`;
-    domString +=    `<p>Organic: ${pies[i].isOrganic}</p>`;
-    domString +=    `<p>Crust: ${pies[i].crust}</p>`;
-    domString +=    `<p>Ice Cream: ${pies[i].iceCream}</p>`;
-    domString +=    `<p>Available: ${pies[i].isAvailable}</p>`;
-    domString +=    `<p>Drink Pairing: ${pies[i].drinkPairing}</p>`;
-    domString +=    `<p class="instructor">Instructor: ${pies[i].instructor}</p></div></div>`;
-        // if (pies[i].instructor === "Zoe") {
-        //   domString += `<div class="type" id="cat">${pies[i].type}</div>`
-        // } else if (pies[i].type === "dog") {
-        //   domString += `<div class="type" id="dog">${pies[i].type}</div>`
-        // } else {
-        //   domString += `<div class="type" id="dino">${pies[i].type}</div>`
-        // };
+    domString +=    `<div class="name">${arr[i].name}</div>`;
+    domString +=    `<div class="img"><img src=${arr[i].imageUrl} alt="Pie Photo"></div>`
+    domString +=    `<div class="inner"><p>Price: ${arr[i].price}</p>`;
+    domString +=    `<p>Warm: ${arr[i].isWarm}</p>`;
+    domString +=    `<p>Organic: ${arr[i].isOrganic}</p>`;
+    domString +=    `<p>Crust: ${arr[i].crust}</p>`;
+    domString +=    `<p>Ice Cream: ${arr[i].iceCream}</p>`;
+    domString +=    `<p>Available: ${arr[i].isAvailable}</p>`;
+    domString +=    `<p>Drink Pairing: ${arr[i].drinkPairing}</p>`;
+    domString +=    `<p class="instructor">Instructor: ${arr[i].instructor}</p></div></div>`;
   }
   printToDom('pie-list', domString);
 };
 
-pieBuilder();
+const findMyPies = (e) => {
+  const buttonId = e.target.id
+  if (buttonId === 'All') {
+    pieBuilder(pies)
+  } else {
+  const myPies = [];
+  for (let i = 0; i < pies.length; i++) {
+  if (pies[i].instructor === buttonId) {
+    myPies.push(pies[i]);
+  }
+  }
+  pieBuilder(myPies);
+}
+};
+
+const events = () => {
+  document.getElementById('Zoe').addEventListener('click', findMyPies);
+  document.getElementById('Mary').addEventListener('click', findMyPies);
+  document.getElementById('Luke').addEventListener('click', findMyPies);
+  document.getElementById('Beth').addEventListener('click', findMyPies);
+  document.getElementById('All').addEventListener('click', findMyPies);
+};
+
+const init = () => {
+  pieBuilder(pies);
+  events();
+};
+
+init ();
