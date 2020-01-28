@@ -117,13 +117,6 @@ const pieBuilder = (arr) => {
     domString +=    `<p>Available: ${arr[i].isAvailable}</p>`;
     domString +=    `<p>Drink Pairing: ${arr[i].drinkPairing}</p>`;
     domString +=    `<p class="instructor">Instructor: ${arr[i].instructor}</p></div></div>`;
-        // if (pies[i].instructor === "Zoe") {
-        //   domString += `<div class="type" id="cat">${pies[i].type}</div>`
-        // } else if (pies[i].type === "dog") {
-        //   domString += `<div class="type" id="dog">${pies[i].type}</div>`
-        // } else {
-        //   domString += `<div class="type" id="dino">${pies[i].type}</div>`
-        // };
   }
   printToDom('pie-list', domString);
 };
@@ -132,6 +125,9 @@ pieBuilder(pies);
 
 const findMyPies = (e) => {
   const buttonId = e.target.id
+  if (buttonId === 'All') {
+    pieBuilder(pies)
+  } else {
   const myPies = [];
   for (let i = 0; i < pies.length; i++) {
   if (pies[i].instructor === buttonId) {
@@ -139,6 +135,7 @@ const findMyPies = (e) => {
   }
   }
   pieBuilder(myPies);
+}
 };
 
 document.getElementById('Zoe').addEventListener('click', findMyPies);

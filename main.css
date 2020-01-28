@@ -2,9 +2,9 @@ body {
   background-color: lightsteelblue;
 }
 
-.buttons {
-  font-size: 20pt;
-  padding: 20px;
+button {
+  font-size: 12pt;
+  padding: 5px 10px;
 }
 
 
